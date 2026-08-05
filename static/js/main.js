@@ -8,6 +8,27 @@ const observer = new IntersectionObserver(entries => entries.forEach(entry => {
 }), { threshold: .13 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+// Interactive Project Category Filter
+const filterButtons = document.querySelectorAll('.filters button');
+const projectCards = document.querySelectorAll('.project');
+
+filterButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    filterButtons.forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+    
+    const filter = button.dataset.filter || 'all';
+    projectCards.forEach(card => {
+      const category = card.dataset.category;
+      if (filter === 'all' || category === filter) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  });
+});
+
 const form = document.querySelector('#lead-form');
 const status = document.querySelector('.form-status');
 form?.addEventListener('submit', async event => {
@@ -37,4 +58,49 @@ if (mapNode && window.L) {
     [25.3176, 82.9739, 'Banaras', 'Project coverage'],
     [26.5471, 80.4878, 'Unnao', 'Project coverage']
   ].forEach(([lat, lng, city, detail]) => L.marker([lat, lng]).addTo(map).bindPopup(`<strong>RS HIGH TECH INDIA</strong><br>${city}<br><small>${detail}</small>`));
+}
+
+// Continuous Hero Background Video Playlist (Smooth Multi-Video Loop)
+const heroVideo = document.querySelector('#hero-bg-video');
+if (heroVideo && heroVideo.dataset.playlist) {
+  try {
+    const playlist = JSON.parse(heroVideo.dataset.playlist);
+    let currentIndex = 0;
+    let isTransitioning = false;
+
+    const playNext = () => {
+      if (isTransitioning || !playlist.length) return;
+      isTransitioning = true;
+      currentIndex = (currentIndex + 1) % playlist.length;
+      
+      heroVideo.style.transition = 'opacity 0.4s ease-in-out';
+      heroVideo.style.opacity = '0.3';
+
+      setTimeout(() => {
+        heroVideo.src = playlist[currentIndex];
+        heroVideo.load();
+        const playPromise = heroVideo.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            heroVideo.style.opacity = '0.72';
+            isTransitioning = false;
+          }).catch(err => {
+            console.warn('Background video playback catch:', err);
+            heroVideo.style.opacity = '0.72';
+            isTransitioning = false;
+          });
+        } else {
+          heroVideo.style.opacity = '0.72';
+          isTransitioning = false;
+        }
+      }, 350);
+    };
+
+    heroVideo.addEventListener('ended', playNext);
+    heroVideo.addEventListener('error', () => {
+      setTimeout(playNext, 1000);
+    });
+  } catch (err) {
+    console.error('Failed to parse video playlist:', err);
+  }
 }

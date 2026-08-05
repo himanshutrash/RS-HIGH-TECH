@@ -121,32 +121,29 @@ nav a:hover:after { width: 100%; }
 .btn.small { padding: 12px 16px; white-space: nowrap; }
 .btn.ghost { background: transparent; border: 1px solid #b4c7e6; box-shadow: none; }
 .nav-toggle { display: none; }
-.hero { height: 630px; overflow: hidden; position: relative; color: #fff; background: #071b3a; }
-.hero-video {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  z-index: 0 !important;
-  opacity: .72 !important;
+.hero {
+  height: 630px;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  background: linear-gradient(90deg, rgba(7, 27, 58, 0.72) 0%, rgba(7, 27, 58, 0.4) 40%, transparent 68%), url('../media/projects/hero-bg-solar.jpg') center/cover !important;
 }
-.hero-shade, .grid, .hero-rail, .hero-excavator { z-index: 1 !important; }
+.hero-shade, .grid, .hero-rail, .hero-catering, .hero-excavator { z-index: 1 !important; }
 .hero-shade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(2, 18, 46, .79), rgba(2, 19, 48, .32) 58%, rgba(2, 19, 48, .02));
+  background: linear-gradient(90deg, rgba(2, 14, 34, 0.55) 0%, rgba(2, 14, 34, 0.2) 45%, transparent 100%);
 }
 .grid {
   position: absolute;
   inset: 0;
-  opacity: .15;
+  opacity: .12;
   background-image: linear-gradient(#fff2 1px, transparent 1px), linear-gradient(90deg, #fff2 1px, transparent 1px);
   background-size: 44px 44px;
   mask-image: linear-gradient(90deg, #000, transparent 65%);
 }
 .hero-content, .hero-stats { z-index: 2 !important; }
-.hero-content { position: relative; max-width: 1200px; margin: auto; padding: 115px 28px; }
+.hero-content { position: relative; max-width: 1220px; margin: auto; padding: 110px 28px; }
 .eyebrow {
   font-size: 10px;
   font-weight: 700;
@@ -154,6 +151,7 @@ nav a:hover:after { width: 100%; }
   letter-spacing: .9px;
   margin: 0 0 14px;
   color: #a9d2ff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
 }
 .eyebrow.blue { color: var(--blue); }
 h1, h2, h3 {
@@ -162,27 +160,33 @@ h1, h2, h3 {
   line-height: 1.08;
   margin: 0;
 }
-h1 { font-size: 50px; max-width: 670px; }
+h1 { font-size: 38px; max-width: 410px; line-height: 1.14; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7); }
 em { font-style: normal; color: #39a0ff; }
-.lead { max-width: 470px; font-size: 13px; color: #e4edf9; margin: 19px 0 25px; }
+.lead { max-width: 380px; font-size: 12px; color: #e4edf9; margin: 16px 0 24px; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6); }
 .actions { display: flex; gap: 12px; }
-.hero-rail, .hero-excavator {
+.hero-rail, .hero-catering, .hero-excavator {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 25%;
-  border-left: 2px solid #ffffffb3;
+  width: 19%;
+  border-left: 2px solid rgba(255, 255, 255, 0.85);
   transform: skewX(-14deg);
   background-position: center;
   background-size: cover;
+  box-shadow: -8px 0 30px rgba(0, 0, 0, 0.45);
 }
 .hero-rail {
-  left: 57%;
-  background-image: linear-gradient(#071b3a11, #071b3a77), url('../media/projects/railway-solar-01.jpeg') !important;
+  left: 47%;
+  background-image: linear-gradient(#071b3a11, #071b3a66), url('../media/projects/hero-slice-railway.jpg') !important;
+}
+.hero-catering {
+  left: 64%;
+  background-image: linear-gradient(#071b3a11, #071b3a66), url('../media/projects/hero-slice-catering.jpg') !important;
 }
 .hero-excavator {
   left: 81%;
-  background-image: linear-gradient(#071b3a11, #071b3a77), url('../media/projects/solar-jhansi-02.jpeg') !important;
+  width: 23%;
+  background-image: linear-gradient(#071b3a11, #071b3a66), url('../media/projects/hero-slice-excavator.jpg') !important;
 }
 .hero-stats {
   position: absolute;
@@ -365,7 +369,7 @@ h2 { font-size: 36px; }
 .project-map { height: 360px; border-radius: 12px; overflow: hidden; box-shadow: 0 15px 35px #0a2c651c; }
 .video-section { background: #f4f7fc; }
 .video-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 30px; }
-.video-gallery video { width: 100%; border-radius: 9px; background: #071b3a; aspect-ratio: 16/9; }
+.video-gallery video { width: 100%; border-radius: 9px; background: #071b3a; aspect-ratio: 16/9; object-fit: contain !important; }
 .contact { background: #071b3a; color: #fff; }
 .contact-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 100px; }
 .contact h2 { font-size: 40px; }
@@ -395,29 +399,96 @@ footer .brand-logo { background: #fff; border-radius: 5px; padding: 3px !importa
 .footer-grid h4 { font-size: 10px; color: #fff; text-transform: uppercase; margin: 0 0 12px; }
 .footer-grid a:not(.brand) { font-size: 10px; color: #b9c8df; text-decoration: none; display: block; margin: 6px 0; }
 .copyright { border-top: 1px solid #ffffff1c; margin-top: 35px; padding-top: 16px; padding-bottom: 16px; font-size: 9px; }
-.whatsapp {
-  position: fixed;
-  right: 23px;
-  bottom: 22px;
-  width: 49px;
-  height: 49px;
-  border-radius: 50%;
-  background: #20b765;
-  color: #fff;
-  z-index: 10;
-  display: grid;
-  place-items: center;
-  text-decoration: none;
-  font-size: 24px;
-  box-shadow: 0 5px 18px #0004;
+.trust-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
 }
+.trust-chips span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(10, 77, 204, 0.45);
+  border: 1px solid rgba(132, 197, 255, 0.35);
+  backdrop-filter: blur(8px);
+  padding: 5px 11px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #e4edf9;
+  letter-spacing: 0.2px;
+}
+.trust-chips i { color: #84c5ff; font-size: 11px; }
+
+.quick-dock {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: rgba(7, 27, 58, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  padding: 12px 8px;
+  border-radius: 28px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+.quick-dock a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #b9c8df;
+  text-decoration: none;
+  font-size: 14px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  transition: all 0.25s ease;
+  position: relative;
+}
+.quick-dock a span {
+  display: none;
+  position: absolute;
+  right: 50px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.quick-dock a:hover {
+  background: var(--blue);
+  color: #fff;
+  transform: scale(1.08);
+}
+.quick-dock a:hover span {
+  display: block;
+}
+
+.project {
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.project.hidden {
+  display: none !important;
+}
+
+.whatsapp { display: none !important; }
+
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity .75s ease, transform .75s ease; }
 .reveal.visible { opacity: 1; transform: none; }
 
 @media(max-width: 900px) {
   nav { gap: 14px; }
-  .hero-rail { left: 62%; }
-  .hero-excavator { display: none; }
+  .hero-rail { left: 62%; width: 30%; }
+  .hero-catering, .hero-excavator { display: none; }
   .pillars { grid-template-columns: 1fr 1fr; gap: 18px; }
   .pillars article:nth-child(2) { border: 0; }
   .about, .contact-grid { gap: 45px; }

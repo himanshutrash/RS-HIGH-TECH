@@ -32,13 +32,14 @@
 
   <main>
     <section class="hero">
-      <video class="hero-video" autoplay muted loop playsinline
-        poster="{{ url_for('static', filename='media/projects/railway-solar-01.jpeg') }}">
-        <source src="{{ url_for('static', filename='media/projects/project-film-01.mp4') }}" type="video/mp4">
-      </video>
       <div class="hero-shade"></div>
       <div class="grid"></div>
       <div class="hero-content reveal">
+        <div class="trust-chips">
+          <span><i class="fa-solid fa-certificate"></i> Tier-1 EPC Execution</span>
+          <span><i class="fa-solid fa-shield-halved"></i> Safety Certified</span>
+          <span><i class="fa-solid fa-map-location-dot"></i> UP & MP Regional Leader</span>
+        </div>
         <p class="eyebrow">Multi-disciplinary contracting company</p>
         <h1>Building Infrastructure.<br><em>Powering Progress.</em><br>Delivering Excellence.</h1>
         <p class="lead">End-to-end capability across solar energy, railway infrastructure, civil works and institutional
@@ -47,7 +48,8 @@
             class="btn ghost" href="#contact">Contact us</a></div>
       </div>
       <div class="hero-rail" aria-label="Railway infrastructure"></div>
-      <div class="hero-excavator" aria-label="Railway excavation"></div>
+      <div class="hero-catering" aria-label="Catering & Manpower"></div>
+      <div class="hero-excavator" aria-label="Civil excavation"></div>
       <div class="hero-stats">
         <div><strong>50+</strong><span>Projects completed</span></div>
         <div><strong>15+</strong><span>Years of experience</span></div>
@@ -149,29 +151,33 @@
             <p class="eyebrow blue">Selected work</p>
             <h2>Delivering impact across industries</h2>
           </div>
-          <div class="filters"><button
-              class="active">All</button><button>Solar</button><button>Railway</button><button>Catering</button></div>
+          <div class="filters">
+            <button class="active" data-filter="all">All</button>
+            <button data-filter="solar">Solar</button>
+            <button data-filter="railway">Railway</button>
+            <button data-filter="catering">Catering</button>
+          </div>
         </div>
         <div class="project-grid">
-          <article class="project p1">
+          <article class="project p1" data-category="solar">
             <div><small>Solar EPC</small>
               <h3>34 KW Solar Installation</h3>
               <p>Military Cantonment, Jhansi</p>
             </div>
           </article>
-          <article class="project p2">
+          <article class="project p2" data-category="railway">
             <div><small>Railway Infrastructure</small>
               <h3>Track Construction</h3>
               <p>Uttar Pradesh</p>
             </div>
           </article>
-          <article class="project p3">
+          <article class="project p3" data-category="railway">
             <div><small>Excavation</small>
               <h3>Railway Excavation Works</h3>
               <p>Etawah &middot; Jhansi &middot; Kanpur</p>
             </div>
           </article>
-          <article class="project p4">
+          <article class="project p4" data-category="catering">
             <div><small>Institutional Catering</small>
               <h3>ICAR Meal Services</h3>
               <p>Jhansi</p>
@@ -240,7 +246,12 @@
         </form>
       </div>
     </section>
-  </main>
+  <aside class="quick-dock" aria-label="Quick contact links">
+    <a href="tel:+918957790196" title="Call Us"><i class="fa-solid fa-phone"></i><span>Call Us</span></a>
+    <a href="https://wa.me/918957790196" target="_blank" rel="noreferrer" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span></a>
+    <a href="mailto:gauravkushwaha8850@gmail.com" title="Email Us"><i class="fa-solid fa-envelope"></i><span>Email</span></a>
+    <a href="#contact" title="Request Quote"><i class="fa-solid fa-file-signature"></i><span>Quote</span></a>
+  </aside>
   <a class="whatsapp" href="https://wa.me/918957790196" target="_blank" rel="noreferrer"
     aria-label="WhatsApp RS High Tech"><i class="fa-brands fa-whatsapp"></i></a>
   <footer>
