@@ -21,7 +21,7 @@ form?.addEventListener('submit', async event => {
     if (!response.ok) throw new Error(result.message);
     status.textContent = result.message; form.reset();
   } catch (error) { status.textContent = error.message || 'Something went wrong. Please call us directly.'; }
-  finally { button.disabled = false; button.innerHTML = 'Request a consultation <span>→</span>'; }
+  finally { button.disabled = false; button.innerHTML = 'Request a consultation <span>&rarr;</span>'; }
 });
 const mapNode = document.querySelector('#project-map');
 if (mapNode && window.L) {
