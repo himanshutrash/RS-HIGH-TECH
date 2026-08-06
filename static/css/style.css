@@ -281,7 +281,7 @@ h2 { font-size: 36px; }
   background-image: linear-gradient(transparent, #071b3a), url('../media/projects/railway-solar-01.jpeg') !important;
 }
 .visual-cards span:nth-child(3) {
-  background-image: linear-gradient(transparent, #071b3a), url('../media/projects/cantt-solar.jpeg') !important;
+  background-image: linear-gradient(transparent, #071b3a), url('../media/projects/icar-canteen.jpg') !important;
 }
 .numbers {
   background: linear-gradient(100deg, #062b69, #041536), url('https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=1200&q=60') center/cover;
@@ -312,7 +312,7 @@ h2 { font-size: 36px; }
   background-image: linear-gradient(#071b3a55, #071b3ae8), url('../media/projects/railway-solar-01.jpeg') !important;
 }
 .service.catering {
-  background-image: linear-gradient(#071b3a55, #071b3ae8), url('../media/projects/cantt-solar.jpeg') !important;
+  background-image: linear-gradient(#071b3a55, #071b3ae8), url('../media/projects/icar-canteen.jpg') center/cover !important;
 }
 .service > span { font-size: 10px; color: #84c5ff; font-weight: 700; }
 .service h3 { font-size: 27px; margin: 20px 0 12px; }
@@ -349,12 +349,31 @@ h2 { font-size: 36px; }
   background-image: linear-gradient(transparent 30%, #051a3dd9), url('../media/projects/solar-kanpur.jpeg') !important;
 }
 .project.p4 {
-  background-image: linear-gradient(transparent 30%, #051a3dd9), url('../media/projects/cantt-solar.jpeg') !important;
+  background-image: linear-gradient(transparent 30%, #051a3dd9), url('../media/projects/icar-canteen.jpg') center/cover !important;
 }
-.project div { position: absolute; bottom: 0; color: white; padding: 18px; }
+.project div { position: absolute; bottom: 0; color: white; padding: 18px; width: 100%; }
 .project small { color: #80c8ff; text-transform: uppercase; font-size: 9px; font-weight: 700; }
 .project h3 { font-size: 17px; margin: 4px 0; }
 .project p { font-size: 9px; margin: 0; color: #d6e6f8; }
+.project-video-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 5px 10px;
+  background: rgba(10, 77, 204, 0.85);
+  color: #fff;
+  border-radius: 4px;
+  font-size: 9px;
+  font-weight: 700;
+  text-decoration: none;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s ease;
+}
+.project-video-btn:hover {
+  background: var(--electric);
+  color: #fff;
+}
 .coverage { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
 .coverage p:not(.eyebrow) { font-size: 12px; color: var(--muted); max-width: 430px; }
 .locations { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
@@ -368,8 +387,57 @@ h2 { font-size: 36px; }
 }
 .project-map { height: 360px; border-radius: 12px; overflow: hidden; box-shadow: 0 15px 35px #0a2c651c; }
 .video-section { background: #f4f7fc; }
-.video-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 30px; }
-.video-gallery video { width: 100%; border-radius: 9px; background: #071b3a; aspect-ratio: 16/9; object-fit: contain !important; }
+.video-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 30px; }
+.video-card {
+  position: relative;
+  background: #06162f;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(10, 77, 204, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(10, 77, 204, 0.25);
+}
+.video-card video {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover !important;
+  display: block;
+  background: #041228;
+}
+.video-info {
+  padding: 14px 18px;
+  background: #071b3a;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.video-info h3 {
+  font-size: 14px;
+  margin: 0;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+.video-info p {
+  font-size: 10px;
+  color: #84c5ff;
+  margin: 3px 0 0;
+}
+.video-badge {
+  background: rgba(59, 130, 246, 0.2);
+  border: 1px solid rgba(132, 197, 255, 0.3);
+  color: #84c5ff;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 9px;
+  font-weight: 700;
+  white-space: nowrap;
+}
 .contact { background: #071b3a; color: #fff; }
 .contact-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 100px; }
 .contact h2 { font-size: 40px; }

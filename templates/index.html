@@ -178,9 +178,11 @@
             </div>
           </article>
           <article class="project p4" data-category="catering">
-            <div><small>Institutional Catering</small>
+            <div>
+              <small><i class="fa-solid fa-utensils"></i> Institutional Catering</small>
               <h3>ICAR Meal Services</h3>
-              <p>Jhansi</p>
+              <p>Jhansi &middot; Institutional Canteen</p>
+              <a href="#video-icar" class="project-video-btn"><i class="fa-solid fa-play"></i> Watch Site Video</a>
             </div>
           </article>
         </div>
@@ -199,24 +201,70 @@
       <div id="project-map" class="project-map" aria-label="RS High Tech project locations"></div>
     </section>
 
-    <section class="video-section shell section">
-      <div class="center">
+    <section class="video-section shell section" id="videos">
+      <div class="center reveal">
         <p class="eyebrow blue">Work in motion</p>
         <h2>Our projects on site</h2>
+        <p>Watch site videos of our ICAR catering services, solar installations, and railway infrastructure work</p>
       </div>
-      <div class="video-gallery"><video controls preload="metadata"
-          poster="{{ url_for('static', filename='media/projects/railway-solar-01.jpeg') }}">
-          <source src="{{ url_for('static', filename='media/projects/project-film-01.mp4') }}" type="video/mp4">
-        </video><video controls preload="metadata"
-          poster="{{ url_for('static', filename='media/projects/solar-jhansi-01.jpeg') }}">
-          <source src="{{ url_for('static', filename='media/projects/project-film-02.mp4') }}" type="video/mp4">
-        </video><video controls preload="metadata"
-          poster="{{ url_for('static', filename='media/projects/solar-kanpur.jpeg') }}">
-          <source src="{{ url_for('static', filename='media/projects/project-film-03.mp4') }}" type="video/mp4">
-        </video><video controls preload="metadata"
-          poster="{{ url_for('static', filename='media/projects/cantt-solar.jpeg') }}">
-          <source src="{{ url_for('static', filename='media/projects/project-film-04.mp4') }}" type="video/mp4">
-        </video></div>
+      <div class="video-gallery">
+        <div class="video-card reveal" id="video-icar">
+          <video controls preload="metadata"
+            poster="{{ url_for('static', filename='media/projects/icar-canteen.jpg') }}">
+            <source src="{{ url_for('static', filename='media/projects/project-film-04.mp4') }}" type="video/mp4">
+            Your browser does not support video tag.
+          </video>
+          <div class="video-info">
+            <div>
+              <h3>ICAR Meal Services & Canteen</h3>
+              <p>Institutional Canteen & Meal Distribution &middot; Jhansi</p>
+            </div>
+            <span class="video-badge"><i class="fa-solid fa-utensils"></i> Catering</span>
+          </div>
+        </div>
+        <div class="video-card reveal">
+          <video controls preload="metadata"
+            poster="{{ url_for('static', filename='media/projects/solar-jhansi-01.jpeg') }}">
+            <source src="{{ url_for('static', filename='media/projects/project-film-02.mp4') }}" type="video/mp4">
+            Your browser does not support video tag.
+          </video>
+          <div class="video-info">
+            <div>
+              <h3>34 KW Solar Plant Installation</h3>
+              <p>Military Cantonment &middot; Jhansi</p>
+            </div>
+            <span class="video-badge"><i class="fa-solid fa-solar-panel"></i> Solar EPC</span>
+          </div>
+        </div>
+        <div class="video-card reveal">
+          <video controls preload="metadata"
+            poster="{{ url_for('static', filename='media/projects/railway-solar-01.jpeg') }}">
+            <source src="{{ url_for('static', filename='media/projects/project-film-01.mp4') }}" type="video/mp4">
+            Your browser does not support video tag.
+          </video>
+          <div class="video-info">
+            <div>
+              <h3>Railway Infrastructure & Works</h3>
+              <p>Etawah &middot; Jhansi &middot; Kanpur Railway Division</p>
+            </div>
+            <span class="video-badge"><i class="fa-solid fa-train-subway"></i> Railway</span>
+          </div>
+        </div>
+        <div class="video-card reveal">
+          <video controls preload="metadata"
+            poster="{{ url_for('static', filename='media/projects/solar-kanpur.jpeg') }}">
+            <source src="{{ url_for('static', filename='media/projects/project-film-03.mp4') }}" type="video/mp4">
+            Your browser does not support video tag.
+          </video>
+          <div class="video-info">
+            <div>
+              <h3>Rooftop Solar Plant Execution</h3>
+              <p>Industrial Rooftop Solar &middot; Kanpur</p>
+            </div>
+            <span class="video-badge"><i class="fa-solid fa-sun"></i> Solar EPC</span>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="contact section" id="contact">
