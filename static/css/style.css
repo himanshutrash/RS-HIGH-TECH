@@ -759,11 +759,49 @@ footer .brand-logo { background: #fff; border-radius: 5px; padding: 3px !importa
   .contact h2 { font-size: 24px; }
   .lead-form { padding: 20px 16px; }
   .video-info h3 { font-size: 12px; }
+  /* Quick Dock - Convert to sticky bottom bar for small screens */
+  .quick-dock {
+    position: fixed;
+    bottom: 0; left: 0; right: 0; top: auto;
+    transform: none;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 0;
+    padding: 8px 8px max(8px, env(safe-area-inset-bottom));
+    gap: 0;
+    background: rgba(7, 27, 58, 0.96);
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    border-left: none; border-right: none; border-bottom: none;
+    z-index: 200;
+  }
+  .quick-dock a {
+    flex-direction: column;
+    width: auto; height: auto;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 16px;
+    gap: 2px;
+  }
+  .quick-dock a span {
+    display: block;
+    position: static;
+    background: none;
+    color: #b9c8df;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    white-space: nowrap;
+  }
+  .quick-dock a:hover span { color: #fff; }
+  body { padding-bottom: 60px; }
 }
 
 /* ══════════════════════════════════════════
    RESPONSIVE — Tiny Phones  (≤ 380px)
-   iPhone SE, Galaxy A03, etc.
+   iPhone SE, Galaxy Z Fold 5 (cover screen), Galaxy A03, etc.
 ══════════════════════════════════════════ */
 @media (max-width: 380px) {
   .hero h1 { font-size: 24px; }
@@ -774,7 +812,6 @@ footer .brand-logo { background: #fff; border-radius: 5px; padding: 3px !importa
   .shell { padding-left: 14px; padding-right: 14px; }
   .numbers b { font-size: 19px; }
   .customer-gallery { gap: 6px; }
-  .quick-dock { display: none; }
   .pillars { padding: 16px 14px; }
   .section { padding: 44px 0; }
   .lead-form { padding: 16px 12px; }
