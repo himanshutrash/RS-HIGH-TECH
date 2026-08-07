@@ -1,4 +1,4 @@
-const navToggle = document.querySelector('.nav-toggle');
+﻿const navToggle = document.querySelector('.nav-toggle');
 const nav = document.querySelector('nav');
 navToggle?.addEventListener('click', () => nav.classList.toggle('open'));
 document.querySelectorAll('nav a').forEach(link => link.addEventListener('click', () => nav.classList.remove('open')));
@@ -34,7 +34,7 @@ const status = document.querySelector('.form-status');
 form?.addEventListener('submit', async event => {
   event.preventDefault();
   const button = form.querySelector('button');
-  button.disabled = true; button.textContent = 'Sending…'; status.textContent = '';
+  button.disabled = true; button.textContent = 'Sendingâ€¦'; status.textContent = '';
   const payload = Object.fromEntries(new FormData(form).entries());
   try {
     const response = await fetch('/api/lead', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload) });
@@ -105,7 +105,7 @@ if (heroVideo && heroVideo.dataset.playlist) {
   }
 }
 
-// Our Journey — Play Profile Modal
+// Our Journey â€” Play Profile Modal
 const playBtn     = document.querySelector('#btn-play-profile');
 const modal       = document.querySelector('#journey-modal');
 const modalClose  = document.querySelector('#journey-modal-close');
@@ -158,7 +158,7 @@ document.querySelectorAll('.project-video-btn').forEach(btn => {
   });
 });
 
-// ── Gallery Lightbox ──────────────────────────────────────────
+// â”€â”€ Gallery Lightbox â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 (function () {
   const lightbox   = document.getElementById('lightbox');
   const lbImg      = document.getElementById('lightbox-img');
@@ -247,3 +247,23 @@ document.querySelectorAll('.project-video-btn').forEach(btn => {
   viewer.addEventListener('click', event => { if (event.target === viewer) close(); });
   document.addEventListener('keydown', event => { if (event.key === 'Escape' && viewer.classList.contains('open')) close(); });
 })();
+// Fold-safe quick dock: tap or swipe to open/close
+(() => {
+  const dock = document.querySelector('.quick-dock');
+  if (!dock) return;
+  const toggle = document.createElement('button');
+  toggle.className = 'dock-toggle';
+  toggle.type = 'button';
+  toggle.setAttribute('aria-label', 'Open quick contact links');
+  toggle.innerHTML = '<i class="fa-solid fa-phone"></i>';
+  dock.insertAdjacentElement('afterend', toggle);
+  const setOpen = open => { dock.classList.toggle('is-open', open); toggle.setAttribute('aria-label', open ? 'Close quick contact links' : 'Open quick contact links'); toggle.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-phone"></i>'; };
+  toggle.addEventListener('click', () => setOpen(!dock.classList.contains('is-open')));
+  let startX = 0;
+  dock.addEventListener('pointerdown', e => { startX = e.clientX; });
+  dock.addEventListener('pointerup', e => { const delta = e.clientX - startX; if (delta < -24) setOpen(true); if (delta > 24) setOpen(false); });
+})();
+
+
+// No in-page translator: visitors may use their browser's built-in translation.
+
