@@ -158,8 +158,92 @@ document.querySelectorAll('.project-video-btn').forEach(btn => {
   });
 });
 
+// ── Gallery Lightbox ──────────────────────────────────────────
+(function () {
+  const lightbox   = document.getElementById('lightbox');
+  const lbImg      = document.getElementById('lightbox-img');
+  const lbCaption  = document.getElementById('lightbox-caption');
+  const lbClose    = document.getElementById('lightbox-close');
+  const lbPrev     = document.getElementById('lightbox-prev');
+  const lbNext     = document.getElementById('lightbox-next');
+  const lbBackdrop = document.getElementById('lightbox-backdrop');
+
+  if (!lightbox) return;
+
+  // Collect all gallery images
+  const cgItems = Array.from(document.querySelectorAll('.cg-item'));
+  let current = 0;
+
+  function openLightbox(index) {
+    current = index;
+    const item = cgItems[index];
+    const img  = item.querySelector('img');
+    const cap  = item.querySelector('.cg-overlay span');
+    lbImg.src             = img.src;
+    lbImg.alt             = img.alt || 'Project photo';
+    lbCaption.textContent = cap ? cap.textContent : '';
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    lbImg.src = '';
+    document.body.style.overflow = '';
+  }
+
+  function showPrev() {
+    current = (current - 1 + cgItems.length) % cgItems.length;
+    openLightbox(current);
+  }
+
+  function showNext() {
+    current = (current + 1) % cgItems.length;
+    openLightbox(current);
+  }
+
+  // Bind clicks on each gallery card
+  cgItems.forEach((item, i) => {
+    item.style.cursor = 'zoom-in';
+    item.addEventListener('click', () => openLightbox(i));
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+  lbBackdrop.addEventListener('click', closeLightbox);
+  lbPrev.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
+  lbNext.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
+
+  // Keyboard: Esc to close, arrows to navigate
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape')     closeLightbox();
+    if (e.key === 'ArrowLeft')  showPrev();
+    if (e.key === 'ArrowRight') showNext();
+  });
+})();
 
 
-
-
-
+// Dedicated full-size photo viewer for the customer gallery
+(() => {
+  const viewer = document.createElement('div');
+  viewer.id = 'image-viewer';
+  viewer.innerHTML = '<button type="button" aria-label="Close image viewer">&times;</button><img alt="Full size project photo"><p></p>';
+  document.body.appendChild(viewer);
+  const fullImage = viewer.querySelector('img');
+  const caption = viewer.querySelector('p');
+  const close = () => { viewer.classList.remove('open'); fullImage.removeAttribute('src'); document.body.style.overflow = ''; };
+  document.addEventListener('click', event => {
+    const image = event.target.closest('.customer-gallery .cg-item img');
+    if (!image) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    fullImage.src = image.currentSrc || image.src;
+    fullImage.alt = image.alt || 'Project photo';
+    caption.textContent = image.closest('.cg-item')?.querySelector('.cg-overlay span')?.textContent || image.alt || '';
+    viewer.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }, true);
+  viewer.querySelector('button').addEventListener('click', close);
+  viewer.addEventListener('click', event => { if (event.target === viewer) close(); });
+  document.addEventListener('keydown', event => { if (event.key === 'Escape' && viewer.classList.contains('open')) close(); });
+})();

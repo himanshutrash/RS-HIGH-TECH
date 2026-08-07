@@ -4,11 +4,16 @@ import sqlite3
 from datetime import datetime, timezone
 from email.message import EmailMessage
 
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, send_from_directory
 
 
 app = Flask(__name__)
 app.config["DATABASE"] = os.path.join(app.root_path, "leads.db")
+
+
+@app.get("/favicon.ico")
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, "static", "media"), "logo.png", mimetype="image/png")
 
 
 def init_db():

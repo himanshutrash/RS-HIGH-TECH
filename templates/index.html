@@ -7,6 +7,9 @@
   <meta name="description"
     content="RS HIGH TECH INDIA delivers trusted solar EPC, railway infrastructure and institutional services across Uttar Pradesh and Madhya Pradesh.">
   <title>RS HIGH TECH INDIA | Engineering Progress</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='media/logo.png') }}">
+  <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='media/logo.png') }}">
+  <link rel="apple-touch-icon" href="{{ url_for('static', filename='media/logo.png') }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -301,10 +304,6 @@
           <div class="cg-overlay"><span>On-site Team · UP</span></div>
         </div>
         <div class="cg-item">
-          <img src="{{ url_for('static', filename='media/projects/WhatsApp Image 2026-07-26 at 5.13.00 PM (1).jpeg') }}" alt="Site work" loading="lazy">
-          <div class="cg-overlay"><span>Project Execution · Jhansi</span></div>
-        </div>
-        <div class="cg-item">
           <img src="{{ url_for('static', filename='media/projects/WhatsApp Image 2026-07-26 at 5.13.01 PM.jpeg') }}" alt="Railway work" loading="lazy">
           <div class="cg-overlay"><span>Railway Works · Etawah</span></div>
         </div>
@@ -398,6 +397,18 @@
   </footer>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+  <!-- ── Gallery Lightbox Modal ── -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close image">&times;</button>
+    <button class="lightbox-prev" id="lightbox-prev" aria-label="Previous image">&#8249;</button>
+    <button class="lightbox-next" id="lightbox-next" aria-label="Next image">&#8250;</button>
+    <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="Full size project photo">
+      <p id="lightbox-caption" class="lightbox-caption"></p>
+    </div>
+  </div>
 </body>
 
 </html>
