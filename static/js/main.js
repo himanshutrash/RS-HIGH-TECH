@@ -104,3 +104,62 @@ if (heroVideo && heroVideo.dataset.playlist) {
     console.error('Failed to parse video playlist:', err);
   }
 }
+
+// Our Journey — Play Profile Modal
+const playBtn     = document.querySelector('#btn-play-profile');
+const modal       = document.querySelector('#journey-modal');
+const modalClose  = document.querySelector('#journey-modal-close');
+const journeyVid  = document.querySelector('#journey-video');
+
+function openJourneyModal() {
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  journeyVid.play().catch(() => {});
+}
+
+function closeJourneyModal() {
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+  journeyVid.pause();
+  journeyVid.currentTime = 0;
+}
+
+playBtn?.addEventListener('click', openJourneyModal);
+playBtn?.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openJourneyModal(); } });
+modalClose?.addEventListener('click', closeJourneyModal);
+modal?.addEventListener('click', e => { if (e.target === modal) closeJourneyModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal?.classList.contains('open')) closeJourneyModal(); });
+
+// Enforce single video playback across the entire page
+document.addEventListener('play', function(e) {
+  const activeVideo = e.target;
+  if (activeVideo.id === 'hero-bg-video') return;
+
+  document.querySelectorAll('video').forEach(video => {
+    if (video !== activeVideo && video.id !== 'hero-bg-video') {
+      video.pause();
+    }
+  });
+}, true);
+
+// Watch Site Video anchor scroll & auto-play
+document.querySelectorAll('.project-video-btn').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    const targetId = btn.getAttribute('href');
+    const targetCard = document.querySelector(targetId);
+    if (targetCard) {
+      targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const video = targetCard.querySelector('video');
+      if (video) {
+        video.play().catch(() => {});
+      }
+    }
+  });
+});
+
+
+
+
+
+

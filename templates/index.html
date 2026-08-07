@@ -50,11 +50,7 @@
       <div class="hero-rail" aria-label="Railway infrastructure"></div>
       <div class="hero-catering" aria-label="Catering & Manpower"></div>
       <div class="hero-excavator" aria-label="Civil excavation"></div>
-      <div class="hero-stats">
-        <div><strong>50+</strong><span>Projects completed</span></div>
-        <div><strong>15+</strong><span>Years of experience</span></div>
-        <div><strong>100+</strong><span>Skilled workers</span></div>
-      </div>
+
     </section>
 
     <section class="pillars shell">
@@ -90,20 +86,25 @@
         <h2>Trusted contractor.<br>Building a <em>better India.</em></h2>
         <p>RS HIGH TECH INDIA is a multidisciplinary engineering company trusted for precise execution, dependable teams
           and better outcomes across Uttar Pradesh and Madhya Pradesh.</p>
-        <div class="mini-stats"><span><b>15+</b>Years</span><span><b>100+</b>Projects</span><span><b>2</b>States</span>
+        <div class="mini-stats"><span><b>10+</b>Years</span><span><b>50+</b>Projects</span><span><b>2</b>States</span>
         </div><a class="text-link" href="#contact">Talk to our team &rarr;</a>
       </div>
-      <div class="about-visual reveal">
-        <div class="play"><i class="fa-solid fa-play"></i><span>Our journey<br><small>Play profile</small></span></div>
-        <div class="visual-cards"><span>Solar Projects</span><span>Railway Works</span><span>Institutional
-            Services</span></div>
+      <div class="about-cards-panel reveal">
+        <div class="visual-cards-static grid-6">
+          <span class="vc-solar">Domestic & Commercial Solar</span>
+          <span class="vc-rail-const">Railway Construction</span>
+          <span class="vc-rail-exc">Railway Excavation</span>
+          <span class="vc-rail-obhs">Railway OBHS & Zone</span>
+          <span class="vc-icar">ICAR Catering & Food</span>
+          <span class="vc-manpower">Manpower & Services</span>
+        </div>
       </div>
     </section>
 
     <section class="numbers">
       <div><b>50+</b><span>Projects Completed</span></div>
-      <div><b>15+</b><span>Years Experience</span></div>
-      <div><b>100+</b><span>Skilled Workers</span></div>
+      <div><b>10+</b><span>Years Experience</span></div>
+      <div><b>50+</b><span>Skilled Workers</span></div>
       <div><b>2</b><span>States Served</span></div>
     </section>
 
@@ -160,14 +161,14 @@
         </div>
         <div class="project-grid">
           <article class="project p1" data-category="solar">
-            <div><small>Solar EPC</small>
-              <h3>34 KW Solar Installation</h3>
-              <p>Military Cantonment, Jhansi</p>
+            <div><small><i class="fa-solid fa-solar-panel"></i> Solar EPC</small>
+              <h3>Rooftop Solar Plant</h3>
+              <p>Cantt &middot; Jhansi Railway Settlement, UP</p>
             </div>
           </article>
-          <article class="project p2" data-category="railway">
-            <div><small>Railway Infrastructure</small>
-              <h3>Track Construction</h3>
+          <article class="project p2" data-category="solar">
+            <div><small><i class="fa-solid fa-solar-panel"></i> Solar EPC</small>
+              <h3>Railway Solar Installation</h3>
               <p>Uttar Pradesh</p>
             </div>
           </article>
@@ -175,6 +176,7 @@
             <div><small>Excavation</small>
               <h3>Railway Excavation Works</h3>
               <p>Etawah &middot; Jhansi &middot; Kanpur</p>
+              <a href="#video-railway" class="project-video-btn"><i class="fa-solid fa-play"></i> Watch Site Video</a>
             </div>
           </article>
           <article class="project p4" data-category="catering">
@@ -211,7 +213,7 @@
         <div class="video-card reveal" id="video-icar">
           <video controls preload="metadata"
             poster="{{ url_for('static', filename='media/projects/icar-canteen.jpg') }}">
-            <source src="{{ url_for('static', filename='media/projects/project-film-04.mp4') }}" type="video/mp4">
+            <source src="{{ url_for('static', filename='media/projects/WhatsApp Video 2026-08-06 at 8.58.44 PM.mp4') }}" type="video/mp4">
             Your browser does not support video tag.
           </video>
           <div class="video-info">
@@ -224,21 +226,21 @@
         </div>
         <div class="video-card reveal">
           <video controls preload="metadata"
-            poster="{{ url_for('static', filename='media/projects/solar-jhansi-01.jpeg') }}">
-            <source src="{{ url_for('static', filename='media/projects/project-film-02.mp4') }}" type="video/mp4">
+            poster="{{ url_for('static', filename='media/projects/cantt-solar.jpeg') }}">
+            <source src="{{ url_for('static', filename='media/projects/project-film-04.mp4') }}" type="video/mp4">
             Your browser does not support video tag.
           </video>
           <div class="video-info">
             <div>
-              <h3>34 KW Solar Plant Installation</h3>
-              <p>Military Cantonment &middot; Jhansi</p>
+              <h3>Solar Panel Installation — Site Video</h3>
+              <p>Rooftop Solar Plant &middot; Military Cantonment, Jhansi</p>
             </div>
             <span class="video-badge"><i class="fa-solid fa-solar-panel"></i> Solar EPC</span>
           </div>
         </div>
-        <div class="video-card reveal">
+        <div class="video-card reveal" id="video-railway">
           <video controls preload="metadata"
-            poster="{{ url_for('static', filename='media/projects/railway-solar-01.jpeg') }}">
+            poster="{{ url_for('static', filename='media/projects/Screenshot 2026-08-07 104722.png') }}">
             <source src="{{ url_for('static', filename='media/projects/project-film-01.mp4') }}" type="video/mp4">
             Your browser does not support video tag.
           </video>
@@ -252,17 +254,71 @@
         </div>
         <div class="video-card reveal">
           <video controls preload="metadata"
-            poster="{{ url_for('static', filename='media/projects/solar-kanpur.jpeg') }}">
+            poster="{{ url_for('static', filename='media/projects/WhatsApp Image 2026-07-26 at 5.28.00 PM (1).jpeg') }}">
             <source src="{{ url_for('static', filename='media/projects/project-film-03.mp4') }}" type="video/mp4">
             Your browser does not support video tag.
           </video>
           <div class="video-info">
             <div>
-              <h3>Rooftop Solar Plant Execution</h3>
-              <p>Industrial Rooftop Solar &middot; Kanpur</p>
+              <h3>Solar Structure Installation — Site Video</h3>
+              <p>Rooftop Mounting &middot; Cantt, Jhansi Railway Settlement, UP</p>
             </div>
-            <span class="video-badge"><i class="fa-solid fa-sun"></i> Solar EPC</span>
+            <span class="video-badge"><i class="fa-solid fa-solar-panel"></i> Solar EPC</span>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="customers shell section" id="customers">
+      <div class="center reveal">
+        <p class="eyebrow blue">Our clients & sites</p>
+        <h2>Happy Customers</h2>
+        <p>A glimpse of our work across solar installations, railway infrastructure and institutional services</p>
+      </div>
+      <div class="customer-gallery reveal">
+        <div class="cg-item">
+          <img src="{{ url_for('static', filename='media/projects/WhatsApp Image 2026-07-26 at 5.12.54 PM.jpeg') }}" alt="Solar installation site" loading="lazy">
+          <div class="cg-overlay"><span>Solar Installation · Jhansi</span></div>
+        </div>
+        <div class="cg-item">
+          <img src="{{ url_for('static', filename='media/projects/WhatsApp Image 2026-07-26 at 5.12.55 PM.jpeg') }}" alt="Solar project site" loading="lazy">
+          <div class="cg-overlay"><span>Solar EPC · Uttar Pradesh</span></div>
+        </div>
+        <div class="cg-item">
+          <img src="{{ url_for('static', filename='media/projects/WhatsApp Image 2026-07-26 at 5.12.56 PM.jpeg') }}" alt="Site work" loading="lazy">
+          <div class="cg-overlay"><span>Project Site · UP</span></div>
+        </div>
+        <div class="cg-item">
+          <img src="{{ url_for('static', filename='media/projects/WhatsApp Image 2026-07-26 at 5.12.57 PM.jpeg') }}" alt="Infrastructure work" loading="lazy">
+          <div class="cg-overlay"><span>Infrastructure Works · Jhansi</span></div>
+        </div>
+        <div class="cg-item">
+          <img src="{{ url_for('static', filename='media/projects/WhatsApp Image 2026-07-26 at 5.12.59 PM.jpeg') }}" alt="Solar panels" loading="lazy">
+          <div class="cg-overlay"><span>Solar EPC · Kanpur</span></div>
+        </div>
+        <div class="cg-item">
+          <img src="{{ url_for('static', filename='media/projects/WhatsApp Image 2026-07-26 at 5.13.00 PM.jpeg') }}" alt="Site photo" loading="lazy">
+          <div class="cg-overlay"><span>On-site Team · UP</span></div>
+        </div>
+        <div class="cg-item">
+          <img src="{{ url_for('static', filename='media/projects/WhatsApp Image 2026-07-26 at 5.13.00 PM (1).jpeg') }}" alt="Site work" loading="lazy">
+          <div class="cg-overlay"><span>Project Execution · Jhansi</span></div>
+        </div>
+        <div class="cg-item">
+          <img src="{{ url_for('static', filename='media/projects/WhatsApp Image 2026-07-26 at 5.13.01 PM.jpeg') }}" alt="Railway work" loading="lazy">
+          <div class="cg-overlay"><span>Railway Works · Etawah</span></div>
+        </div>
+        <div class="cg-item">
+          <img src="{{ url_for('static', filename='media/projects/WhatsApp Image 2026-07-26 at 5.13.03 PM.jpeg') }}" alt="Site installation" loading="lazy">
+          <div class="cg-overlay"><span>Solar Installation · UP</span></div>
+        </div>
+        <div class="cg-item">
+          <img src="{{ url_for('static', filename='media/projects/WhatsApp Image 2026-07-26 at 5.13.04 PM.jpeg') }}" alt="Project site" loading="lazy">
+          <div class="cg-overlay"><span>Institutional Services · Jhansi</span></div>
+        </div>
+        <div class="cg-item">
+          <img src="{{ url_for('static', filename='media/projects/WhatsApp Image 2026-07-26 at 5.13.06 PM.jpeg') }}" alt="Site team" loading="lazy">
+          <div class="cg-overlay"><span>On-site Documentation · UP</span></div>
         </div>
       </div>
     </section>
@@ -300,6 +356,25 @@
     <a href="mailto:gauravkushwaha8850@gmail.com" title="Email Us"><i class="fa-solid fa-envelope"></i><span>Email</span></a>
     <a href="#contact" title="Request Quote"><i class="fa-solid fa-file-signature"></i><span>Quote</span></a>
   </aside>
+
+  <!-- Our Journey Video Modal -->
+  <div class="video-modal-overlay" id="journey-modal" role="dialog" aria-modal="true" aria-label="Our journey video">
+    <div class="video-modal">
+      <button class="video-modal-close" id="journey-modal-close" aria-label="Close video"><i class="fa-solid fa-xmark"></i></button>
+      <video id="journey-video" controls preload="metadata"
+        poster="{{ url_for('static', filename='media/projects/icar-canteen.jpg') }}">
+        <source src="{{ url_for('static', filename='media/projects/WhatsApp Video 2026-08-06 at 8.58.44 PM.mp4') }}" type="video/mp4">
+        Your browser does not support video.
+      </video>
+      <div class="video-modal-label">
+        <div>
+          <h4>RS High Tech India — Site Profile</h4>
+          <p>ICAR Jhansi &middot; Institutional Services &middot; On-site documentation</p>
+        </div>
+        <span class="video-badge"><i class="fa-solid fa-video"></i> Site Video</span>
+      </div>
+    </div>
+
   <a class="whatsapp" href="https://wa.me/918957790196" target="_blank" rel="noreferrer"
     aria-label="WhatsApp RS High Tech"><i class="fa-brands fa-whatsapp"></i></a>
   <footer>
