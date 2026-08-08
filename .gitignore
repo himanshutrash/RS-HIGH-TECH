@@ -1,3 +1,5 @@
 .env
 leads.db
 __pycache__/
+.venv/
+*.mp4

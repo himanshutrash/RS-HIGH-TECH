@@ -1,4 +1,4 @@
-services:
+﻿services:
   - type: web
     name: rs-high-tech-india
     runtime: python
@@ -18,4 +18,5 @@ services:
       - key: SMTP_FROM
         sync: false
       - key: LEAD_RECIPIENT
-        value: gauravkushwaha8850@gmail.com
+        value: info.rshightech@gmail.com
+

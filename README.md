@@ -1,4 +1,4 @@
-# RS HIGH TECH INDIA website
+﻿# RS HIGH TECH INDIA website
 
 Premium corporate marketing website and enquiry pipeline built with Flask. It is independent of the existing `assetflow-` application.
 
@@ -23,7 +23,7 @@ Every quote/contact submission is stored in `leads.db`. To also receive it by em
 - `SMTP_USERNAME=your Gmail address`
 - `SMTP_PASSWORD=your Google App Password`
 - `SMTP_FROM=your Gmail address`
-- `LEAD_RECIPIENT=gauravkushwaha8850@gmail.com`
+- `LEAD_RECIPIENT=info.rshightech@gmail.com`
 
 ## Deploy to Render
 
@@ -34,3 +34,4 @@ Push this directory to its own Git repository and create a Render Blueprint (or 
 ## Replacing imagery
 
 The visual placeholders currently use high-quality remote engineering images. Replace the image URLs in `static/css/style.css` with uploaded project media when available; the sections and cards will preserve their layout.
+

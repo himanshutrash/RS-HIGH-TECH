@@ -4,7 +4,11 @@ import sqlite3
 from datetime import datetime, timezone
 from email.message import EmailMessage
 
+from dotenv import load_dotenv
 from flask import Flask, jsonify, render_template, request, send_from_directory
+
+load_dotenv()  # loads .env file when running locally
+
 
 
 app = Flask(__name__)
@@ -32,7 +36,7 @@ def notify_owner(lead):
     host = os.getenv("SMTP_HOST")
     username = os.getenv("SMTP_USERNAME")
     password = os.getenv("SMTP_PASSWORD")
-    recipient = os.getenv("LEAD_RECIPIENT", "gauravkushwaha8850@gmail.com")
+    recipient = os.getenv("LEAD_RECIPIENT", "info.rshightech@gmail.com")
     if not all((host, username, password)):
         return False
 
