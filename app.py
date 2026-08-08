@@ -32,17 +32,48 @@ def init_db():
 
 
 def notify_owner(lead):
-    """Sends lead email via Resend API or SMTP fallback."""
-    recipient = os.getenv("LEAD_RECIPIENT", "info.rshightech@gmail.com")
-    
-    # Method 1: Resend API
+    """Sends lead email via Gmail SMTP (primary) or Resend API (fallback)."""
+    recipient_str = os.getenv("LEAD_RECIPIENT", "info.rshightech@gmail.com")
+    recipients = [r.strip() for r in recipient_str.split(",") if r.strip()]
+
+    # Method 1: Gmail / Standard SMTP (Direct Google-authenticated delivery)
+    host = os.getenv("SMTP_HOST")
+    username = os.getenv("SMTP_USERNAME")
+    password = os.getenv("SMTP_PASSWORD")
+    if all((host, username, password)):
+        try:
+            msg = EmailMessage()
+            msg["Subject"] = f"New website enquiry — {lead['service'] or 'General'}"
+            msg["From"] = f"RS High Tech India <{os.getenv('SMTP_FROM', username)}>"
+            msg["To"] = ", ".join(recipients)
+            if lead.get("email"):
+                msg["Reply-To"] = lead["email"]
+            msg.set_content(
+                "New enquiry from RS HIGH TECH INDIA website\n\n"
+                f"Name    : {lead['name']}\n"
+                f"Phone   : {lead['phone']}\n"
+                f"Email   : {lead['email'] or 'Not provided'}\n"
+                f"Service : {lead['service'] or 'Not specified'}\n"
+                f"Message : {lead['message'] or 'No message'}"
+            )
+            port = int(os.getenv("SMTP_PORT", "587"))
+            with smtplib.SMTP(host, port, timeout=15) as server:
+                server.starttls()
+                server.login(username, password)
+                server.send_message(msg)
+            app.logger.info("Email sent to %s via Gmail SMTP", recipients)
+            return True
+        except Exception as err:
+            app.logger.warning("SMTP failed: %s. Attempting Resend API fallback...", err)
+
+    # Method 2: Resend API Fallback
     api_key = os.getenv("RESEND_API_KEY", "")
     if api_key:
         try:
             resend.api_key = api_key
             params = {
                 "from": "RS High Tech India <onboarding@resend.dev>",
-                "to": [recipient],
+                "to": recipients,
                 "subject": f"New website enquiry — {lead['service'] or 'General'}",
                 "text": (
                     "New enquiry from RS HIGH TECH INDIA website\n\n"
@@ -53,38 +84,15 @@ def notify_owner(lead):
                     f"Message : {lead['message'] or 'No message'}"
                 ),
             }
+            if lead.get("email"):
+                params["reply_to"] = lead["email"]
             resend.Emails.send(params)
-            app.logger.info("Email sent to %s via Resend API", recipient)
+            app.logger.info("Email sent to %s via Resend API", recipients)
             return True
         except Exception as err:
-            app.logger.warning("Resend API failed: %s. Attempting SMTP fallback...", err)
+            app.logger.error("Resend API failed: %s", err)
 
-    # Method 2: SMTP Fallback (e.g. Gmail SMTP with App Password)
-    host = os.getenv("SMTP_HOST")
-    username = os.getenv("SMTP_USERNAME")
-    password = os.getenv("SMTP_PASSWORD")
-    if all((host, username, password)):
-        msg = EmailMessage()
-        msg["Subject"] = f"New website enquiry — {lead['service'] or 'General'}"
-        msg["From"] = os.getenv("SMTP_FROM", username)
-        msg["To"] = recipient
-        msg.set_content(
-            "New enquiry from RS HIGH TECH INDIA website\n\n"
-            f"Name    : {lead['name']}\n"
-            f"Phone   : {lead['phone']}\n"
-            f"Email   : {lead['email'] or 'Not provided'}\n"
-            f"Service : {lead['service'] or 'Not specified'}\n"
-            f"Message : {lead['message'] or 'No message'}"
-        )
-        port = int(os.getenv("SMTP_PORT", "587"))
-        with smtplib.SMTP(host, port, timeout=15) as server:
-            server.starttls()
-            server.login(username, password)
-            server.send_message(msg)
-        app.logger.info("Email sent to %s via SMTP", recipient)
-        return True
-
-    app.logger.warning("Neither RESEND_API_KEY nor full SMTP environment variables are configured.")
+    app.logger.warning("Neither SMTP nor RESEND_API_KEY is properly configured.")
     return False
 
 
