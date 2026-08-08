@@ -38,6 +38,8 @@ def notify_owner(lead):
     password = os.getenv("SMTP_PASSWORD")
     recipient = os.getenv("LEAD_RECIPIENT", "info.rshightech@gmail.com")
     if not all((host, username, password)):
+        app.logger.warning("SMTP not configured: SMTP_HOST=%s, SMTP_USERNAME=%s, SMTP_PASSWORD=%s",
+                           bool(host), bool(username), bool(password))
         return False
 
     msg = EmailMessage()
@@ -54,12 +56,30 @@ def notify_owner(lead):
         server.starttls()
         server.login(username, password)
         server.send_message(msg)
+    app.logger.info("Email sent to %s", recipient)
     return True
 
 
 @app.get("/")
 def home():
     return render_template("index.html")
+
+
+@app.get("/test-email")
+def test_email():
+    """Debug route — visit /test-email on Render to check SMTP config."""
+    host     = os.getenv("SMTP_HOST")
+    username = os.getenv("SMTP_USERNAME")
+    password = os.getenv("SMTP_PASSWORD")
+    if not all((host, username, password)):
+        return jsonify(ok=False, message="SMTP env vars missing",
+                       SMTP_HOST=bool(host), SMTP_USERNAME=bool(username), SMTP_PASSWORD=bool(password)), 500
+    try:
+        notify_owner({"name": "Test", "phone": "0000000000", "email": "test@test.com",
+                      "service": "Test", "message": "Test email from /test-email route"})
+        return jsonify(ok=True, message=f"Test email sent to {os.getenv('LEAD_RECIPIENT', 'info.rshightech@gmail.com')}")
+    except Exception as e:
+        return jsonify(ok=False, error=str(e)), 500
 
 
 @app.post("/api/lead")
