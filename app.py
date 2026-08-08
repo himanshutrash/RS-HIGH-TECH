@@ -38,13 +38,13 @@ def notify_owner(lead):
         app.logger.warning("RESEND_API_KEY not set — email skipped")
         return False
 
-    recipient = os.getenv("LEAD_RECIPIENT", "info.rshightech@gmail.com")
+    recipient = os.getenv("LEAD_RECIPIENT", "fantastichimanshu10@gmail.com")
     resend.api_key = api_key
-    params = resend.Emails.SendParams(
-        from_="RS High Tech India <onboarding@resend.dev>",
-        to=[recipient],
-        subject=f"New website enquiry \u2014 {lead['service'] or 'General'}",
-        text=(
+    params = {
+        "from": "RS High Tech India <onboarding@resend.dev>",
+        "to": [recipient],
+        "subject": f"New website enquiry — {lead['service'] or 'General'}",
+        "text": (
             "New enquiry from RS HIGH TECH INDIA website\n\n"
             f"Name    : {lead['name']}\n"
             f"Phone   : {lead['phone']}\n"
@@ -52,7 +52,7 @@ def notify_owner(lead):
             f"Service : {lead['service'] or 'Not specified'}\n"
             f"Message : {lead['message'] or 'No message'}"
         ),
-    )
+    }
     resend.Emails.send(params)
     app.logger.info("Email sent to %s via Resend", recipient)
     return True
