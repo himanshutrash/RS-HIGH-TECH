@@ -38,23 +38,37 @@ def notify_owner(lead):
         app.logger.warning("RESEND_API_KEY not set — email skipped")
         return False
 
-    recipient = os.getenv("LEAD_RECIPIENT", "fantastichimanshu10@gmail.com")
+    recipient = os.getenv("LEAD_RECIPIENT", "info.rshightech@gmail.com")
     resend.api_key = api_key
-    params = {
-        "from": "RS High Tech India <onboarding@resend.dev>",
-        "to": [recipient],
-        "subject": f"New website enquiry — {lead['service'] or 'General'}",
-        "text": (
-            "New enquiry from RS HIGH TECH INDIA website\n\n"
-            f"Name    : {lead['name']}\n"
-            f"Phone   : {lead['phone']}\n"
-            f"Email   : {lead['email'] or 'Not provided'}\n"
-            f"Service : {lead['service'] or 'Not specified'}\n"
-            f"Message : {lead['message'] or 'No message'}"
-        ),
-    }
-    resend.Emails.send(params)
-    app.logger.info("Email sent to %s via Resend", recipient)
+    
+    def send_to(target_email):
+        params = {
+            "from": "RS High Tech India <onboarding@resend.dev>",
+            "to": [target_email],
+            "subject": f"New website enquiry — {lead['service'] or 'General'}",
+            "text": (
+                "New enquiry from RS HIGH TECH INDIA website\n\n"
+                f"Name    : {lead['name']}\n"
+                f"Phone   : {lead['phone']}\n"
+                f"Email   : {lead['email'] or 'Not provided'}\n"
+                f"Service : {lead['service'] or 'Not specified'}\n"
+                f"Message : {lead['message'] or 'No message'}"
+            ),
+        }
+        return resend.Emails.send(params)
+
+    try:
+        send_to(recipient)
+        app.logger.info("Email sent to %s via Resend", recipient)
+    except Exception as e:
+        app.logger.warning("Failed to send to %s (%s). Trying fallback recipient...", recipient, e)
+        fallback = "fantastichimanshu10@gmail.com"
+        if recipient != fallback:
+            send_to(fallback)
+            app.logger.info("Email sent to fallback %s via Resend", fallback)
+        else:
+            raise e
+
     return True
 
 
