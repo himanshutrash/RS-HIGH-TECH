@@ -1,4 +1,4 @@
-﻿# RS HIGH TECH INDIA website
+# RS HIGH TECH INDIA website
 
 Premium corporate marketing website and enquiry pipeline built with Flask. It is independent of the existing `assetflow-` application.
 
