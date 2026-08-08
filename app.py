@@ -88,6 +88,11 @@ def notify_owner(lead):
     return False
 
 
+@app.get("/")
+def home():
+    return render_template("index.html")
+
+
 @app.get("/test-email")
 def test_email():
     """Debug route — visit /test-email to check Resend / SMTP config."""
